@@ -20,6 +20,8 @@
     </tr>
 </table>
 
+<div id= "paging_buttons">Pages:</div>
+
 <script>
     function show_list() {
         let url = '/rest/players';
@@ -37,7 +39,24 @@
                 ).appendTo('#table_1');
             });
         });
+        let totalCount = getTotalCount();
     }
+
+    function getTotalCount() {
+        let url = '/rest/players/count';
+        let res = 0;
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (result) {
+                res = parseInt(result);
+            }
+        })
+
+        console.log(res);
+        return res;
+    }
+
 </script>
 
 
