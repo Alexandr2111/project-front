@@ -7,6 +7,15 @@
 <body onload="show_list()">
 <h1>RPG admin panel</h1>
 
+<label for="count_1">Count per page:</label>
+
+<select id="count_1" onchange="show_list()">
+    <option value="3">3</option>
+    <option value="3">5</option>
+    <option value="3">10</option>
+    <option value="3">20</option>
+</select>
+
 <table id="table_1">
     <tr>
         <th>#</th>
@@ -40,6 +49,14 @@
             });
         });
         let totalCount = getTotalCount();
+        let countPerPage = $('#count_1').val();
+
+        if (countPerPage == null) {
+            countPerPage = 3;
+        }
+
+        let pagesCount = Math.ceil(totalCount/countPerPage);
+
     }
 
     function getTotalCount() {
@@ -53,7 +70,6 @@
             }
         })
 
-        console.log(res);
         return res;
     }
 
