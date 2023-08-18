@@ -62,10 +62,10 @@
                     + item.level + "</td><td>"
                     + new Date(item.birthday).toLocaleDateString() + "</td><td>"
                     + item.banned + "</td><td>"
-                    + "<button id='button_edit_" + item.id + "' onclick='editAccount(" + item.id + ")'>"
+                    + "<button id='button_edit_" + item.id + "' onclick='editAcc(" + item.id + ")'>"
                     + "<img src='/img/edit.png'>"
                     + "</button" + "</td><td>"
-                    + "<button id='button_delete_" + item.id + "' onclick='deleteAccount(" + item.id + ")'>"
+                    + "<button id='button_delete_" + item.id + "' onclick='deleteAcc(" + item.id + ")'>"
                     + "<img src='/img/delete.png'>"
                     + "</button" + "</td>").appendTo("#table_1");
             });
@@ -104,7 +104,7 @@
         return res;
     }
 
-    function deleteAccount(id) {
+    function deleteAcc(id) {
         let url = "/rest/players/" + id;
 
         $.ajax({
@@ -116,14 +116,55 @@
         })
     }
 
+    function editAcc(id) {
+        let identifier_edit = "#button_edit_" + id;
+        let identifier_delete = "#button_delete_" + id;
+
+        $(identifier_delete).remove();
+
+        let save_image_tag = "<img src= '/img/save.png'>";
+        $(identifier_edit).html(save_image_tag);
+
+        // let current_by_parent = $(identifier_edit).parent().parent();
+        // let current_by_children = $(current_by_parent).children();
+        //
+        // let name = current_by_children[1];
+        // name.innerHTML = "<input id = 'input_name_" + id + "' type = 'text' value = '" + name.innerHTML + "'>";
+        //
+        // let title = current_by_children[2];
+        // title.innerHTML = "<input id = 'input_title_" + id + "' type = 'text' value = '" + title.innerHTML + "'>";
+        //
+        // let race = current_by_children[3];
+        // let race_id = "#select_race_" + id;
+        // let race_current_value = race.innerHTML
+        // race.innerHTML = getRaceHtml(id);
+        // $(race_id).val(race_current_value).change();
+        //
+        // let profession = current_by_children[4];
+        // let profession_id = "#select_profession_" + id;
+        // let profession_current_value = profession.innerHTML
+        // profession.innerHTML = getProfessionHtml(id);
+        // $(profession_id).val(profession_current_value).change();
+        //
+        // let banned = current_by_children[7];
+        // let banned_id = "#select_banned_" + id;
+        // let banned_current_value = banned.innerHTML
+        // banned.innerHTML = getBannedHtml(id);
+        // $(banned_id).val(banned_current_value).change();
+        //
+        // let save_tag = "saveAccount(" + id + ")";
+        // $(identifier_edit).attr('onclick',save_tag);
+    }
+
+
     function getCurrentPage(){
-        let currentPage = 1;
+        let current_page = 1;
         $('button:parent(div)').each(function () {
             if($(this).css("color") === 'rgb(255,0,0)'){
-                currentPage = $(this).text();
+                current_page = $(this).text();
             }
         });
-        return parseInt(currentPage) - 1;
+        return parseInt(current_page) - 1;
     }
 
 
