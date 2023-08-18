@@ -104,6 +104,29 @@
         return res;
     }
 
+    function deleteAccount(id) {
+        let url = "/rest/players/" + id;
+
+        $.ajax({
+            url: url,
+            type: "DELETE",
+            success: function () {
+                show_list(getCurrentPage());
+            }
+        })
+    }
+
+    function getCurrentPage(){
+        let currentPage = 1;
+        $('button:parent(div)').each(function () {
+            if($(this).css("color") === 'rgb(255,0,0)'){
+                currentPage = $(this).text();
+            }
+        });
+        return parseInt(currentPage) - 1;
+    }
+
+
 </script>
 
 </body>
