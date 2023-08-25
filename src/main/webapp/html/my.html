@@ -19,7 +19,7 @@
     <option value="20">20</option>
 </select>
 
-<table id="table_1">
+<table id = "table" border="1" width="600" style="border-collapse:collapse;" bgcolor="#069F99">
     <tr>
         <th>#</th>
         <th>Name</th>
@@ -126,7 +126,7 @@
                     + "</button" + "</td><td>"
                     + "<button id='button_delete_" + item.id + "' onclick='deleteAcc(" + item.id + ")'>"
                     + "<img src='/img/delete.png'>"
-                    + "</button" + "</td>").appendTo("#table_1");
+                    + "</button" + "</td>").appendTo("#table");
             });
         });
 
